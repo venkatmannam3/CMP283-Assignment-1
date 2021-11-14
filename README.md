@@ -51,7 +51,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
 5. Build the Linux Kernel using the source code in previous step:<br />
 ```
-   sudo apt-get build-dep linux linux-image-$(uname -r)<br />
+   sudo apt-get build-dep linux linux-image-$(uname -r)
 ```
 ```
    sudo apt-get install libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
