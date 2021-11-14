@@ -30,8 +30,7 @@
 
 This assignment focuses on the creation of a Linux kernel module to query various MSRs to determine the virtualization features present in CPU. The module will then report the features it discovers as system message log.
 
-#### Prerequisite: 
-A machine capable of running Linux, with VMX virtualization features exposed.
+**Prerequisite:** A machine capable of running Linux, with VMX virtualization features exposed.
 
 #### Steps followed to complete the assignment:
 1. To begin, install VMware Fusion and use the Ubuntu ISO to create a virtual machine. Then enable virtualization in the VM.<br />
@@ -43,23 +42,24 @@ A machine capable of running Linux, with VMX virtualization features exposed.
    https://github.com/torvalds/linux
 
 3. Install git:<br />
-
+```
    sudo apt-get install git
-
+```
 4. Using the command below, clone the kernel sources from the master linux git repository.<br />
-
+```
    git clone https://github.com/venkatmannam3/linux.git 
-
+```
 5. Build the Linux Kernel using the source code in previous step:<br />
-
+```
    sudo apt-get build-dep linux linux-image-$(uname -r)<br />
-   
+```
+```
    sudo apt-get install libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
-   
+``` 
 6. In the previously cloned "linux" source folder, create a new directory called "cmpe283" using the command below.<br />
-
+```
    mkdir cmpe283
-   
+```  
 7. To the cmpe283 directory, copy the "Makefile" and cmpe283-1.c that are provided.
 
 8. The functionality for querying all other MSRs is described further below.
@@ -69,26 +69,28 @@ A machine capable of running Linux, with VMX virtualization features exposed.
    * To detect and print VMX capabilities of CPU, the function report_capability( ) is called with appropriate parameters passed in order to print pinbased, procbased, entry and exit controls.
    
 9. To go to the cmpe283 directory, use the command:<br />
-
+```
    cd cmpe283
-
+```
 10. Inside the cmpe283 directory, run the following command to build the module:<br />
-
+```
     make all
-    
+```   
 11. Load and unload the specific kernel module into the kernel using the following commands:<br />
 
     * When a module is inserted into the kernel, the module_init macro will be invoked, which will call the function init_module. 
     
     * Similarly, when the module is removed with rmmod, module_exit macro will be invoked, which will call the cleanup_module.
-
+```
     sudo insmod ./cmpe283-1.ko
-
+```
+```
     sudo rmmod ./cmpe283-1.ko
-    
+```    
 12. The VMX features get logged in the kernel log, and using the below command, we can verify the message buffer/output from the kernel in the system message log:<br />
-
+```
     dmesg 
+```
 
 ## Output:
 
