@@ -12,7 +12,7 @@
 * Downloaded and built the Linux Kernel modules and associated libraries to create a local copy of Linux Kernel.
 * Discussed and researched about MSRs to be read in the SDM.
 * Modified the cmpe283-1.c code by adding the custom logic to enable our system to read and give output for capabilities of the various MSRs. 
-* Contribution also includes MSR code for controls- Primary and Secondary Procbased controls, and discovering the VMX Features present in my processor (Intel) by writing a Linux kernel module that queries these features.
+* Contribution also includes MSR code for controls- Primary and Secondary Procbased controls and discovering the VMX Features present in my processor (Intel) by writing a Linux kernel module that queries these features.
 * Tested and verified the proper working of the functionality of code by comparing it with the sample output given to us. 
 * Simulating the answers for the questions in the README.md file.
 
@@ -22,7 +22,7 @@
 * Built a VM successfully in the first attempt by allocating 150GB storage and 8GB RAM to it. 
 * Tested the machine to check its capability for VMX virtualization and feature recognition. 
 * Researched and discussed MSRs to be read in the SDM and contributed to the writing and execution of the code.
-* Contribution also includes MSR code for controls- Entry and Exit controls, and determining the availability of secondary procbased controls.
+* Contribution also includes MSR code for controls- Entry and Exit controls and determining the availability of secondary procbased controls.
 * Staged and committed the cmpe283-1.c code file and Makefile after inserting the module and printing out the buffer from the Kernel. 
 * Generated a comprehensive diff file after committing the changes to the repository. 
 
@@ -61,7 +61,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
    cd linux
 ```
 ```
-   cp /boot/config-(linux kernel vesion) .config
+   cp /boot/config-(linux kernel version) .config
 ```
 7. Make the oldconfig file to set the required configuration for building the kernel and just hit enter for every question:
 ```
@@ -81,7 +81,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
 11. Copy all the modules installed in the 9th step into the appropriate folder by using:
 ```
-   sudo make INSTALL_MOD_STRIP=1 modules install
+   sudo make INSTALL_MOD_STRIP=1 modules_install
 ```
 12. Build the kernel using the following command:
 ```
@@ -95,25 +95,25 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
    mkdir cmpe283
 ```  
-15. To the cmpe283 directory, copy the "Makefile" and cmpe283-1.c that are provided.
-16. Add the following required licenses into the .c file that we copied:
-```
-   MODULE_LICENSE("GPL_v2");
-```
-17. Run the make function to run the Makefile
-```
-   make
-```
-18. The functionality for querying all other MSRs is described further below.
-
-   * By referring to SDM, we created different structures with name (description) and bit positions for entry, exit, pinbased, procbased, secondary procbased controls.
-
-   * To detect and print VMX capabilities of CPU, the function report_capability( ) is called with appropriate parameters passed in order to print pinbased, procbased, entry, and exit controls.
-   
-19. To go to the cmpe283 directory, use the command:<br />
+15. To go to the cmpe283 directory, use the command:<br />
 ```
    cd cmpe283
 ```   
+16. To the cmpe283 directory, copy the "Makefile" and cmpe283-1.c that are provided.
+17. Add the following required licenses into the .c file that we copied:
+```
+   MODULE_LICENSE("GPL_v2");
+```
+18. Run the make function to run the Makefile
+```
+   make
+```
+19. The functionality for querying all other MSRs is described further below.
+
+    * By referring to SDM, we created different structures with name (description) and bit positions for entry, exit, pinbased, procbased, secondary procbased controls.
+
+    * To detect and print VMX capabilities of CPU, the function report_capability( ) is called with appropriate parameters passed in order to print pinbased, procbased, entry, and exit controls.
+   
 20. Load and unload the specific kernel module into the kernel using the following commands:<br />
 
     * When a module is inserted into the kernel, the module_init macro will be invoked, which will call the function init_module. 
