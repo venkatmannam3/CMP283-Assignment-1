@@ -49,34 +49,70 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
    git clone https://github.com/venkatmannam3/linux.git 
 ```
-5. Build the Linux Kernel using the source code in previous step:<br />
-```
-   sudo apt-get build-dep linux linux-image-$(uname -r)
-```
+5. Install the required packages for building a linux kernel:<br />
 ```
    sudo apt-get install libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
 ``` 
-6. In the previously cloned "linux" source folder, create a new directory called "cmpe283" using the command below.<br />
+6. Check the kernel version you are building and Copy the appropriate config file into the cloned linux folder:
+```
+   uname -a
+   cd linux
+```
+```
+   cp /boot/config-(linux kernel vesion) .config
+```
+7. Make the oldconfig file to set the required configuration for building the kernel and just hit enter for every question:
+```
+   make oldconfig
+```
+8. Run the following command to prepare bulding the kernel:
+```
+   make prepare
+```
+9. Install all the required modules for the kernel using the command:
+```
+   make modules
+```
+10. Now build the kernel using the make command:
+```
+   make
+```
+11. Copy all the modules installed in 9th step into the appropriate folder by using:
+```
+   sudo make INSTALL_MOD_STRIP=1 modules install
+```
+12. Build the kernel using the following command:
+```
+   make install
+```
+13. Reboot the ubuntu system to load into the latest kernel build
+```
+   sudo reboot
+```
+14. In the previously cloned "linux" source folder, create a new directory called "cmpe283" using the command below.<br />
 ```
    mkdir cmpe283
 ```  
-7. To the cmpe283 directory, copy the "Makefile" and cmpe283-1.c that are provided.
-
-8. The functionality for querying all other MSRs is described further below.
+15. To the cmpe283 directory, copy the "Makefile" and cmpe283-1.c that are provided.
+16. Add the following required licenses into the .c file that we copied:
+```
+   MODULE_LICENSE("GPL_v2");
+```
+17. Run the make function to run the Makefile
+```
+   make
+```
+18. The functionality for querying all other MSRs is described further below.
 
    * By referring to SDM, we created different structures with name (description) and bit positions for entry, exit,pinbased, procbased, secondary procbased    controls.
 
    * To detect and print VMX capabilities of CPU, the function report_capability( ) is called with appropriate parameters passed in order to print pinbased, procbased, entry and exit controls.
    
-9. To go to the cmpe283 directory, use the command:<br />
+19. To go to the cmpe283 directory, use the command:<br />
 ```
    cd cmpe283
-```
-10. Inside the cmpe283 directory, run the following command to build the module:<br />
-```
-    make all
 ```   
-11. Load and unload the specific kernel module into the kernel using the following commands:<br />
+20. Load and unload the specific kernel module into the kernel using the following commands:<br />
 
     * When a module is inserted into the kernel, the module_init macro will be invoked, which will call the function init_module. 
     
@@ -87,7 +123,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
     sudo rmmod ./cmpe283-1.ko
 ```    
-12. The VMX features get logged in the kernel log, and using the below command, we can verify the message buffer/output from the kernel in the system message log:<br />
+21. The VMX features get logged in the kernel log, and using the below command, we can verify the message buffer/output from the kernel in the system message log:<br />
 ```
     dmesg 
 ```
