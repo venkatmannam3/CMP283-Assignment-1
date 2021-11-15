@@ -4,7 +4,7 @@
 * Kiran Bala Devineni (SJSU ID: 015218866)
 * Venkat Mannam (SJSU ID: 015263326)
 
-## Q1. For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented / researched.
+## Q1. For each member in your team, provide 1 paragraph detailing what parts of the lab that member implemented/researched.
 
 ### Kiran Bala Devineni (SJSU ID: 015218866)
 
@@ -12,7 +12,7 @@
 * Downloaded and built the Linux Kernel modules and associated libraries to create a local copy of Linux Kernel.
 * Discussed and researched about MSRs to be read in the SDM.
 * Modified the cmpe283-1.c code by adding the custom logic to enable our system to read and give output for capabilities of the various MSRs. 
-* Contribution also includes MSR code for controls- Primary and Secondary Procbased controls, and discovering the VMX Features present in my processor (Intel) by               writing a Linux kernel module that queries these features.
+* Contribution also includes MSR code for controls- Primary and Secondary Procbased controls, and discovering the VMX Features present in my processor (Intel) by writing a Linux kernel module that queries these features.
 * Tested and verified the proper working of the functionality of code by comparing it with the sample output given to us. 
 * Simulating the answers for the questions in the README.md file.
 
@@ -20,15 +20,15 @@
 
 * Setup the environment in macOS using VMware Fusion 12 and downloaded the Linux ISO file. 
 * Built a VM successfully in the first attempt by allocating 150GB storage and 8GB RAM to it. 
-* Tested the machine to check its capability for the VMX virtualization and feature recognition. 
-* Researched and discussed about MSRs to be read in the SDM and contributed to writing and execution of the code.
+* Tested the machine to check its capability for VMX virtualization and feature recognition. 
+* Researched and discussed MSRs to be read in the SDM and contributed to the writing and execution of the code.
 * Contribution also includes MSR code for controls- Entry and Exit controls, and determining the availability of secondary procbased controls.
 * Staged and committed the cmpe283-1.c code file and Makefile after inserting the module and printing out the buffer from the Kernel. 
 * Generated a comprehensive diff file after committing the changes to the repository. 
 
 ## Q2. Describe in detail the steps you used to complete the assignment. 
 
-This assignment focuses on the creation of a Linux kernel module to query various MSRs to determine the virtualization features present in CPU. The module will then report the features it discovers as system message log.
+This assignment focuses on the creation of a Linux kernel module to query various MSRs to determine the virtualization features present in the CPU. The module will then report the features it discovers as a system message log.
 
 **Prerequisite:** A machine capable of running Linux, with VMX virtualization features exposed.
 
@@ -53,9 +53,11 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
    sudo apt-get install libncurses-dev gawk flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
 ``` 
-6. Check the kernel version you are building and Copy the appropriate config file into the cloned linux folder:
+6. Check the kernel version you are building and copy the appropriate config file into the cloned linux folder:
 ```
    uname -a
+```
+```
    cd linux
 ```
 ```
@@ -65,7 +67,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
    make oldconfig
 ```
-8. Run the following command to prepare bulding the kernel:
+8. Run the following command to prepare to build the kernel:
 ```
    make prepare
 ```
@@ -77,7 +79,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
    make
 ```
-11. Copy all the modules installed in 9th step into the appropriate folder by using:
+11. Copy all the modules installed in the 9th step into the appropriate folder by using:
 ```
    sudo make INSTALL_MOD_STRIP=1 modules install
 ```
@@ -85,7 +87,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
    make install
 ```
-13. Reboot the ubuntu system to load into the latest kernel build
+13. Reboot the Ubuntu system to load into the latest kernel build
 ```
    sudo reboot
 ```
@@ -104,9 +106,9 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
 18. The functionality for querying all other MSRs is described further below.
 
-   * By referring to SDM, we created different structures with name (description) and bit positions for entry, exit,pinbased, procbased, secondary procbased    controls.
+   * By referring to SDM, we created different structures with name (description) and bit positions for entry, exit, pinbased, procbased, secondary procbased controls.
 
-   * To detect and print VMX capabilities of CPU, the function report_capability( ) is called with appropriate parameters passed in order to print pinbased, procbased, entry and exit controls.
+   * To detect and print VMX capabilities of CPU, the function report_capability( ) is called with appropriate parameters passed in order to print pinbased, procbased, entry, and exit controls.
    
 19. To go to the cmpe283 directory, use the command:<br />
 ```
@@ -123,7 +125,7 @@ This assignment focuses on the creation of a Linux kernel module to query variou
 ```
     sudo rmmod ./cmpe283-1.ko
 ```    
-21. The VMX features get logged in the kernel log, and using the below command, we can verify the message buffer/output from the kernel in the system message log:<br />
+21. The VMX features get logged in the kernel log and using the below command, we can verify the message buffer/output from the kernel in the system message log:<br />
 ```
     dmesg 
 ```
